@@ -1,11 +1,5 @@
 # Node.js
 node_modules/
-npm-debug.log
-.env
 
-# Logs
-*.log
-
-# Editor/OS temporary files
-.DS_Store
-.vscode/
+# Generated files
+index.html

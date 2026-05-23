@@ -1,233 +1,198 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tech Talks Event</title>
+    <title>1-Day Tech Event Schedule</title>
     <style>
         body {
             font-family: Arial, sans-serif;
+            line-height: 1.6;
             margin: 0;
-            padding: 0;
+            padding: 20px;
             background-color: #f4f4f4;
             color: #333;
         }
         .container {
             max-width: 900px;
-            margin: 20px auto;
-            background-color: #fff;
-            padding: 20px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
             border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
         h1, h2 {
             color: #0056b3;
-            text-align: center;
         }
         .search-container {
             margin-bottom: 20px;
-            text-align: center;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        .search-container label {
+            font-weight: bold;
+            margin-right: 10px;
         }
         .search-container input {
-            padding: 10px;
-            width: 70%;
-            max-width: 400px;
-            border: 1px solid #ddd;
+            padding: 8px;
+            border: 1px solid #ccc;
             border-radius: 4px;
-            font-size: 16px;
+            width: 70%;
+            max-width: 300px;
         }
-        .schedule {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-        }
-        .talk-card {
-            background-color: #e9f5ff;
-            border: 1px solid #b3e0ff;
-            border-radius: 8px;
+        .schedule-item {
+            background: #e9ecef;
+            margin-bottom: 15px;
             padding: 15px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-            transition: transform 0.2s;
+            border-radius: 5px;
+            border-left: 5px solid #0056b3;
+            transition: all 0.3s ease;
         }
-        .talk-card:hover {
-            transform: translateY(-5px);
+        .schedule-item.hidden {
+            display: none;
         }
-        .talk-card h3 {
+        .schedule-item.break {
+            background: #f8d7da;
+            border-color: #dc3545;
+            color: #721c24;
+        }
+        .schedule-item h3 {
             margin-top: 0;
             color: #0056b3;
         }
-        .talk-card p {
-            margin-bottom: 5px;
+        .schedule-item p {
+            margin: 5px 0;
         }
-        .talk-card .time {
-            font-weight: bold;
-            color: #007bff;
-        }
-        .talk-card .speakers {
-            font-style: italic;
-            color: #555;
-        }
-        .talk-card .category {
+        .schedule-item .speakers, .schedule-item .category {
             font-size: 0.9em;
-            background-color: #007bff;
-            color: white;
-            padding: 3px 8px;
-            border-radius: 4px;
-            margin-right: 5px;
-            display: inline-block;
-            margin-top: 5px;
+            color: #666;
         }
-        .lunch-break {
-            background-color: #ffe0b2;
-            border: 1px solid #ffcc80;
-            border-radius: 8px;
-            padding: 15px;
-            text-align: center;
-            font-weight: bold;
-            color: #e65100;
-            grid-column: 1 / -1; /* Span across all columns */
+        .schedule-item.break h3 {
+            color: #dc3545;
         }
-        footer {
+        .footer {
             text-align: center;
             margin-top: 30px;
-            padding: 10px;
+            font-size: 0.8em;
             color: #777;
-            font-size: 0.9em;
+        }
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+            .search-container input {
+                width: 100%;
+                margin-top: 10px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Tech Talks Event 2026</h1>
-        <h2>Schedule</h2>
+        <h1>1-Day Tech Event Schedule</h1>
+        <p>Join us for a day filled with exciting technical talks from industry experts!</p>
 
         <div class="search-container">
-            <input type="text" id="categorySearch" placeholder="Search by category (e.g., AI, Frontend)">
+            <label for="categorySearch">Search by Category:</label>
+            <input type="text" id="categorySearch" onkeyup="filterTalks()" placeholder="e.g., Web Development, Node.js">
         </div>
 
-        <div id="scheduleContainer" class="schedule">
-            <!-- Schedule will be rendered here by JavaScript -->
+        <div id="schedule">
+            
+            <div class="schedule-item talk-item" data-category="web development performance">
+                <h3>10:00 AM - 11:00 AM: Introduction to WebAssembly</h3>
+                <p class="speakers">Speaker(s): Alice Smith</p>
+                <p class="category">Category: Web Development, Performance</p>
+                <p>An overview of WebAssembly, its benefits, and how to get started with it in your web projects.</p>
+            </div>
+        
+            <div class="schedule-item break transition-break">
+                <h3>11:00 AM - 11:10 AM: Transition (10 min)</h3>
+                <p>Transition Break</p>
+            </div>
+        
+            <div class="schedule-item talk-item" data-category="frontend ui/ux">
+                <h3>11:10 AM - 12:10 PM: Modern CSS Techniques</h3>
+                <p class="speakers">Speaker(s): Bob Johnson</p>
+                <p class="category">Category: Frontend, UI/UX</p>
+                <p>Explore the latest features in CSS, including Grid, Flexbox, custom properties, and more.</p>
+            </div>
+        
+            <div class="schedule-item break transition-break">
+                <h3>12:10 PM - 12:20 PM: Transition (10 min)</h3>
+                <p>Transition Break</p>
+            </div>
+        
+            <div class="schedule-item talk-item" data-category="backend node.js api">
+                <h3>12:20 PM - 01:20 PM: Building Scalable Node.js APIs</h3>
+                <p class="speakers">Speaker(s): Charlie Brown, Dana White</p>
+                <p class="category">Category: Backend, Node.js, API</p>
+                <p>Best practices for designing and implementing high-performance, scalable APIs with Node.js and Express.</p>
+            </div>
+        
+            <div class="schedule-item break transition-break">
+                <h3>01:20 PM - 01:30 PM: Transition (10 min)</h3>
+                <p>Transition Break</p>
+            </div>
+        
+            <div class="schedule-item break lunch-break">
+                <h3>01:30 PM - 02:30 PM: Lunch Break (60 min)</h3>
+                <p>Lunch Break</p>
+            </div>
+        
+            <div class="schedule-item talk-item" data-category="cloud devops">
+                <h3>02:30 PM - 03:30 PM: Demystifying Cloud Native Development</h3>
+                <p class="speakers">Speaker(s): Eve Davis</p>
+                <p class="category">Category: Cloud, DevOps</p>
+                <p>Understand the core concepts of cloud-native development, containers, and Kubernetes.</p>
+            </div>
+        
+            <div class="schedule-item break transition-break">
+                <h3>03:30 PM - 03:40 PM: Transition (10 min)</h3>
+                <p>Transition Break</p>
+            </div>
+        
+            <div class="schedule-item talk-item" data-category="data science javascript">
+                <h3>03:40 PM - 04:40 PM: Data Science with JavaScript</h3>
+                <p class="speakers">Speaker(s): Frank Green</p>
+                <p class="category">Category: Data Science, JavaScript</p>
+                <p>Leverage the power of JavaScript for data analysis, visualization, and machine learning in the browser.</p>
+            </div>
+        
+            <div class="schedule-item break transition-break">
+                <h3>04:40 PM - 04:50 PM: Transition (10 min)</h3>
+                <p>Transition Break</p>
+            </div>
+        
+            <div class="schedule-item talk-item" data-category="frontend web development trends">
+                <h3>04:50 PM - 05:50 PM: The Future of Frontend Frameworks</h3>
+                <p class="speakers">Speaker(s): Grace Hoppper</p>
+                <p class="category">Category: Frontend, Web Development, Trends</p>
+                <p>A look at emerging trends and predictions for the next generation of frontend development frameworks.</p>
+            </div>
+        
+        </div>
+
+        <div class="footer">
+            <p>&copy; 2026 1-Day Tech Event. All rights reserved.</p>
         </div>
     </div>
 
-    <footer>
-        <p>&copy; 2026 Tech Talks Event. All rights reserved.</p>
-    </footer>
-
     <script>
-        const talksData = [
-            {
-                title: "Introduction to AI in Cloud",
-                speakers: ["Alice Johnson"],
-                category: ["AI", "Cloud"],
-                duration: "1 hour",
-                description: "An overview of leveraging AI services in cloud platforms.",
-                startTime: "10:00 AM",
-                endTime: "11:00 AM"
-            },
-            {
-                title: "Microservices Best Practices",
-                speakers: ["Bob Williams", "Carol Davis"],
-                category: ["Architecture", "Backend", "Cloud"],
-                duration: "1 hour",
-                description: "Deep dive into designing and deploying resilient microservices.",
-                startTime: "11:10 AM",
-                endTime: "12:10 PM"
-            },
-            {
-                title: "Frontend Frameworks in 2026",
-                speakers: ["David Lee"],
-                category: ["Frontend", "JavaScript"],
-                duration: "1 hour",
-                description: "A look at the most popular and emerging frontend technologies.",
-                startTime: "12:20 PM",
-                endTime: "01:20 PM"
-            },
-            {
-                type: "break",
-                title: "Lunch Break",
-                startTime: "01:20 PM",
-                endTime: "02:20 PM",
-                duration: "1 hour"
-            },
-            {
-                title: "Data Streaming with Kafka",
-                speakers: ["Eve Martinez"],
-                category: ["Data", "Backend"],
-                duration: "1 hour",
-                description: "Exploring real-time data processing with Apache Kafka.",
-                startTime: "02:20 PM",
-                endTime: "03:20 PM"
-            },
-            {
-                title: "Securing Your Web Applications",
-                speakers: ["Frank White", "Grace Green"],
-                category: ["Security", "Web"],
-                duration: "1 hour",
-                description: "Essential practices for building secure web applications.",
-                startTime: "03:30 PM",
-                endTime: "04:30 PM"
-            },
-            {
-                title: "DevOps and CI/CD Pipelines",
-                speakers: ["Henry Black"],
-                category: ["DevOps", "Cloud"],
-                duration: "1 hour",
-                description: "Automating software delivery with modern CI/CD tools.",
-                startTime: "04:40 PM",
-                endTime: "05:40 PM"
-            }
-        ];
+        function filterTalks() {
+            const searchInput = document.getElementById('categorySearch').value.toLowerCase();
+            const talkItems = document.querySelectorAll('.talk-item');
 
-        function renderSchedule(filterCategory = '') {
-            const scheduleContainer = document.getElementById('scheduleContainer');
-            scheduleContainer.innerHTML = ''; // Clear previous content
-
-            let filteredTalks = talksData;
-            if (filterCategory) {
-                const searchKeywords = filterCategory.toLowerCase().split(',').map(kw => kw.trim()).filter(kw => kw);
-                filteredTalks = talksData.filter(item => {
-                    if (item.type === "break") return true; // Always show breaks
-                    return searchKeywords.some(keyword =>
-                        item.category && item.category.some(cat => cat.toLowerCase().includes(keyword))
-                    );
-                });
-            }
-
-            filteredTalks.forEach(item => {
-                if (item.type === "break") {
-                    const breakElement = document.createElement('div');
-                    breakElement.className = 'lunch-break';
-                    breakElement.innerHTML = `
-                        <h2>${item.title}</h2>
-                        <p>${item.startTime} - ${item.endTime}</p>
-                    `;
-                    scheduleContainer.appendChild(breakElement);
+            talkItems.forEach(item => {
+                const category = item.getAttribute('data-category');
+                if (category.includes(searchInput) || searchInput === '') {
+                    item.classList.remove('hidden');
                 } else {
-                    const talkCard = document.createElement('div');
-                    talkCard.className = 'talk-card';
-                    talkCard.innerHTML = `
-                        <p class="time">${item.startTime} - ${item.endTime}</p>
-                        <h3>${item.title}</h3>
-                        <p class="speakers">Speakers: ${item.speakers.join(', ')}</p>
-                        <p>${item.description}</p>
-                        <div>
-                            ${item.category.map(cat => `<span class="category">${cat}</span>`).join('')}
-                        </div>
-                    `;
-                    scheduleContainer.appendChild(talkCard);
+                    item.classList.add('hidden');
                 }
             });
         }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            renderSchedule(); // Render all talks initially
-
-            const categorySearchInput = document.getElementById('categorySearch');
-            categorySearchInput.addEventListener('input', (event) => {
-                renderSchedule(event.target.value);
-            });
-        });
     </script>
 </body>
 </html>
